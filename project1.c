@@ -62,59 +62,6 @@ int set_color(float x, float y, int imagewidth, int color_offset)
 
 }
 
-// unsigned char get_red(unsigned char *imagedata, float x, float y, int imagewidth, int imageheight)
-// {
-//     float x1 = floorf(x);
-//     float x2 = ceilf(x);
-//     float y1 = floorf(y);
-//     float y2 = ceilf(y);
-//     float dx = x - x1;
-//     float dy = y - y1;
-//     unsigned char red_left_upper = get_color(imagedata,x1,y2,imagewidth,2);
-//     unsigned char red_right_upper = get_color(imagedata,x2,y2,imagewidth,2);
-//     unsigned char red_left_lower= get_color(imagedata,x1,y1,imagewidth,2);
-//     unsigned char red_right_lower= get_color(imagedata,x2,y1,imagewidth,2);
-//     unsigned char red_left = red_left_upper* (1-dy)+ red_left_lower * dy;
-//     unsigned char red_right= red_right_upper* (1-dy)+red_right_lower * dy;
-//     unsigned char red_result = red_left* (1-dx)+red_right* dx;
-//     return red_result;
-// }
-
-// unsigned char get_green(unsigned char *imagedata, float x, float y, int imagewidth, int imageheight)
-// {
-//     float x1 = floorf(x);
-//     float x2 = ceilf(x);
-//     float y1 = floorf(y);
-//     float y2 = ceilf(y);
-//     float dx = x - x1;
-//     float dy = y - y1;
-//     unsigned char green_left_upper = get_color(imagedata,x1,y2,imagewidth,1);
-//     unsigned char green_right_upper = get_color(imagedata,x2,y2,imagewidth,1);
-//     unsigned char green_left_lower= get_color(imagedata,x1,y1,imagewidth,1);
-//     unsigned char green_right_lower= get_color(imagedata,x2,y1,imagewidth,1);
-//     unsigned char green_left = green_left_upper* (1-dy)+ green_left_lower * dy;
-//     unsigned char green_right= green_right_upper* (1-dy)+green_right_lower * dy;
-//     unsigned char green_result = green_left* (1-dx)+green_right* dx;
-//     return green_result;
-// }
-
-// unsigned char get_blue(unsigned char *imagedata, float x, float y, int imagewidth, int imageheight)
-// {
-//     float x1 = floorf(x);
-//     float x2 = ceilf(x);
-//     float y1 = floorf(y);
-//     float y2 = ceilf(y);
-//     float dx = x - x1;
-//     float dy = y - y1;
-//     unsigned char blue_left_upper = get_color(imagedata,x1,y2,imagewidth,0);
-//     unsigned char blue_right_upper = get_color(imagedata,x2,y2,imagewidth,0);
-//     unsigned char blue_left_lower= get_color(imagedata,x1,y1,imagewidth,0);
-//     unsigned char blue_right_lower= get_color(imagedata,x2,y1,imagewidth,0);
-//     unsigned char blue_left = blue_left_upper* (1-dy)+ blue_left_lower * dy;
-//     unsigned char blue_right= blue_right_upper* (1-dy)+blue_right_lower * dy;
-//     unsigned char blue_result = blue_left* (1-dx)+blue_right* dx;
-//     return blue_result;
-// }
 
 unsigned char get_color_bilinear(unsigned char *imagedata, float x, float y, int imagewidth, int imageheight,int color_offset)
 {
