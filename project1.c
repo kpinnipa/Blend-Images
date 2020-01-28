@@ -93,23 +93,14 @@ void main(int argc, char *argv[])
 {
     // char input[1000];
     char message[80] = "Enter [programname] [imagefile1] [imagefile2] [ratio] [outputfile]\n";
-    // char message1[80] = "Enter ratio between 0 and 1!\n";
+    char message2[80] = "ex.) ./blendimages blendimages flowers.bmp jar.bmp 0.5 result3.bmp";
+    char message1[80] = "Enter ratio between 0 and 1!\n";
     if(argc < 6)
     {
         printf("%s",message);
+        printf("%s\n",message2);
         return;
     }
-
-    // char* programname = argv[1];
-    // char* imagefile1 = argv[2];
-    // char* imagefile2 = argv[3];
-    // char* user_ratio = argv[4];
-    // if((int)user_ratio > 1 || (int)user_ratio < 0)
-    // {
-    //     printf("%s",message1);
-    //     return;
-    // }
-    // char* outputfile = argv[5];
     
     FILE * foo;
     FILE * file;
@@ -121,9 +112,22 @@ void main(int argc, char *argv[])
     struct tagBITMAPINFOHEADER fih2;
     float ratio;
     ratio = atof(argv[4]);
+    if(ratio > 1 || ratio < 0)
+    {
+        printf("%s",message1);
+        printf("%s",message);
+        printf("%s\n",message2);
+        return;
+    }
 
 
-    foo = fopen(argv[2],"rb");
+    if ((foo = fopen(argv[2],"rb")) == NULL)
+    {
+        printf("imagefile1 is not a real file, please enter a valid file\n");
+        printf("%s",message);
+        printf("%s\n",message2);
+        return;
+    }
     fread(&fh.bfType,1,2,foo);
     fread(&fh.bfSize,1,4,foo);
     fread(&fh.bfReserved1,1,2,foo);
@@ -135,7 +139,13 @@ void main(int argc, char *argv[])
 
     
     //This one will be the bigger one.
-    fool = fopen(argv[3],"rb");
+    if ((fool = fopen(argv[3],"rb")) == NULL)
+    {
+        printf("imagefile2 is not a real file, please enter a valid file\n");
+        printf("%s",message);
+        printf("%s\n",message2);
+        return;
+    }
     fread(&fh2.bfType,1,2,fool);
     fread(&fh2.bfSize,1,4,fool);
     fread(&fh2.bfReserved1,1,2,fool);
