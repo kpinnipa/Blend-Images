@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-//unsigned char get_red(unsigned char *imagedata,float x,float y,int imagewidth, int imageheight);
-
 typedef unsigned short WORD;
 typedef unsigned int DWORD;
 typedef unsigned int LONG;
@@ -42,10 +40,7 @@ unsigned char get_color(unsigned char *data, float x, float y, int imagewidth, i
         padding = (4-bplo%4);
     }
     edit = x*3 + (y*imagewidth*3) + padding*y + color_offset;
-    //data[x*3 + y*fih.biWidth*3 + 2] = 0;
-    //data[x*3 + bplo + 2] = 0;
-    return data[edit]; //do this to change all of the pixels of a certain color
-    //return edit;
+    return data[edit];
 }
 
 int set_color(float x, float y, int imagewidth, int color_offset)
@@ -58,7 +53,7 @@ int set_color(float x, float y, int imagewidth, int color_offset)
         padding = (4-bplo%4);
     }
     edit = x*3 + (y*imagewidth*3) + padding*y + color_offset;
-    return edit; //do this to change all of the pixels of a certain color
+    return edit;
 
 }
 
@@ -91,7 +86,6 @@ unsigned char get_color_bilinear(unsigned char *imagedata, float x, float y, int
 
 void main(int argc, char *argv[])
 {
-    // char input[1000];
     char message[80] = "Enter [programname] [imagefile1] [imagefile2] [ratio] [outputfile]\n";
     char message2[80] = "ex.) ./blendimages blendimages flowers.bmp jar.bmp 0.5 result3.bmp";
     char message1[80] = "Enter ratio between 0 and 1!\n";
@@ -138,7 +132,7 @@ void main(int argc, char *argv[])
     fread(data,1,fih.biSizeImage,foo);
 
     
-    //This one will be the bigger one.
+
     if ((fool = fopen(argv[3],"rb")) == NULL)
     {
         printf("imagefile2 is not a real file, please enter a valid file\n");
@@ -154,7 +148,7 @@ void main(int argc, char *argv[])
     fread(&fih2,1,sizeof(struct tagBITMAPINFOHEADER),fool);
     unsigned char *data2 = (unsigned char*)malloc(fih2.biSizeImage);
     fread(data2,1,fih2.biSizeImage,fool);
-    //fclose(fool);
+
     
     struct tagBITMAPINFOHEADER *ptr = &fih2;
     struct tagBITMAPINFOHEADER *smaller = &fih;
@@ -197,7 +191,6 @@ void main(int argc, char *argv[])
                 new = pix*ratio + small_b*(1-ratio);
                 new1 = pix1*ratio + small_g*(1-ratio);
                 new2 = pix2*ratio + small_r*(1-ratio);
-                //printf("Hi");
             }
 
             int pos = set_color(x, y, (*ptr).biWidth,0);
@@ -207,7 +200,6 @@ void main(int argc, char *argv[])
             data3[pos] = new;
             data3[pos1] = new1;
             data3[pos2] = new2;            
-            
         }
     }
 
